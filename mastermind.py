@@ -15,4 +15,11 @@ def set_lvl():
         except ValueError:
             print ("Wrong format, try it again...")
 
+def repeat_digits():
+    repeat_d = input("Do you want repeated digits? (y/n): ")
+    while repeat_d != "y" and repeat_d != "n":
+        repeat_d = input("FAIL, please insert y --> yes or n --> no: ")
+    return repeat_d
+
 print(set_lvl())
+print(repeat_digits())
