@@ -1,4 +1,3 @@
-
 def set_lvl():
     print("Please set difficulty:",
         "\n\t1.Basic \t(3 digits --> [0-4], 6 attempts)",
@@ -16,10 +15,28 @@ def set_lvl():
             print ("Wrong format, try it again...")
 
 def repeat_digits():
-    repeat_d = input("Do you want repeated digits? (y/n): ")
-    while repeat_d != "y" and repeat_d != "n":
-        repeat_d = input("FAIL, please insert y --> yes or n --> no: ")
-    return repeat_d
+    repeat = True
+    answer = input("Do you want repeated digits? (y/n): ")
+    while answer != "y" and answer != "n":
+        answer = input("FAIL, please insert y --> yes or n --> no: ")
+    if answer == "n":
+        repeat = False
+    return repeat
 
-print(set_lvl())
-print(repeat_digits())
+def start_game(lvl, repeat):
+    print("loading...")
+    if lvl == 1:
+        print("\tDifficulty => BASIC")
+    elif lvl == 2:
+        print("\tDifficulty => NORMAL")
+    else:
+        print("\tDifficulty => HARD")
+    
+    if repeat:
+        print("\tRepetition => True")
+    else:
+        print("\tRepetition => False")
+
+    print("---- MASTERMIND ----")
+
+start_game(set_lvl(), repeat_digits())
