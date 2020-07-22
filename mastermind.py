@@ -1,8 +1,9 @@
 def set_lvl():
+    print("WELCOME TO MASTERMIND GAME")
     print("Please set difficulty:",
         "\n\t1.Basic \t(3 digits --> [0-4], 6 attempts)",
         "\n\t2.Normal \t(4 digits --> [0-5], 8 attempts)",
-        "\n\t3.Hard  \t(5 digits --> [0-9], 6 attempts)")
+        "\n\t3.Hard  \t(5 digits --> [0-9], 10 attempts)")
     
     while True:
         try:
@@ -24,19 +25,24 @@ def repeat_digits():
     return repeat
 
 def start_game(lvl, repeat):
-    print("loading...")
+    print("Loading...")
     if lvl == 1:
         print("\tDifficulty => BASIC")
+        attempts = 6
     elif lvl == 2:
         print("\tDifficulty => NORMAL")
+        attempts = 8
     else:
         print("\tDifficulty => HARD")
+        attempts = 10
+    
+    print("\tAttempts =>", attempts)
     
     if repeat:
-        print("\tRepetition => True")
+        print("\tRepetition => Yes")
     else:
-        print("\tRepetition => False")
+        print("\tRepetition => No")
 
-    print("---- MASTERMIND ----")
+    print("Starting...")
 
 start_game(set_lvl(), repeat_digits())
