@@ -28,7 +28,11 @@ def repeat_digits():
 
 def start_game(lvl, repeat):
     print("Loading...")
-    secret_number = []
+
+    secret_number_list = []
+    correct = 0
+    half_correct = 0
+
     if lvl == 1:
         print("\tDifficulty => BASIC")
         n_digits = 3
@@ -43,30 +47,30 @@ def start_game(lvl, repeat):
         print("\tDifficulty => HARD")
         n_digits = 5
         limit = 9
-        attempts = 10
-    
+        attempts = 10   
     print("\tAttempts =>", attempts)
     print("\tN_digits =>", n_digits)
-    
     if repeat:
         print("\tRepetition => Yes")
     else:
         print("\tRepetition => No")
-
     # -- Algorithm that generates the secret number -- #
     number = random_number(limit)
-    secret_number.append(number)
+    secret_number_list.append(number)
     n_digits -= 1
+    secret_number = number*(10**(n_digits))
     while n_digits > 0:
         if repeat:
             number = random_number(limit)
         else:
-            while number in secret_number:
+            while number in secret_number_list:
                 number = random_number(limit)
-        secret_number.append(number)
+        secret_number_list.append(number)
         n_digits -= 1
-            
-    print(secret_number[:])
+        secret_number = secret_number + number*(10**(n_digits))
+    
+    print(secret_number_list[:])
+    print(secret_number)
     print("Starting...")
     
 
