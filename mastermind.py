@@ -39,8 +39,7 @@ def number_of_repetitions(number, list_of_numbers):
 def start_game(lvl, repeat):
     print("Loading...")
 
-    secret_number_list = []#[2, 3, 2]
-    #secret_number = 232
+    secret_number_list = []
     correct = 0
     half_correct = 0
 
@@ -81,7 +80,7 @@ def start_game(lvl, repeat):
         n_digits -= 1
         secret_number = secret_number + number*(10**(n_digits))
     #print(secret_number_list[:])
-    print(secret_number)
+    #print(secret_number)
     print("Starting...")
 
     index_i = 0
@@ -91,36 +90,25 @@ def start_game(lvl, repeat):
 
     while attempts > 0:
         number_attempt = input("Please introduce your number (attemtp "+ str(attempts)+"): ")
-        if repeat:
-            for i in number_attempt:
-                if int(i) in secret_number_list: 
-                    if i not in used:
-                        number_rep = number_rep + number_of_repetitions(int(i), secret_number_list)
-                        used.append(i)
-                    for j in str(secret_number):
-                        if i == j:
-                            if index_i == index_j:
-                                correct += 1
-                                break
-                        index_j += 1
-                    index_j = 0
-                index_i += 1
-            used[:] = []
-            half_correct = number_rep - correct
-            number_rep = 0       
-        else:
-            for i in number_attempt:
-                if int(i) in secret_number_list:
-                    for j in str(secret_number):
-                        if i == j:
-                            if index_i == index_j:
-                                correct += 1
-                            else:
-                                half_correct += 1
+
+        for i in number_attempt:
+            if int(i) in secret_number_list: 
+                if i not in used:
+                    number_rep = number_rep + number_of_repetitions(int(i), secret_number_list)
+                    used.append(i)
+                for j in str(secret_number):
+                    if i == j:
+                        if index_i == index_j:
+                            correct += 1
                             break
-                        index_j += 1
-                    index_j = 0
-                index_i += 1
+                    index_j += 1
+                index_j = 0
+            index_i += 1
+
+        used[:] = []
+        half_correct = number_rep - correct
+        number_rep = 0  
+
         print("Correct -->", correct)
         print("Half correct -->", half_correct)
         if int(number_attempt) == secret_number:
@@ -130,6 +118,7 @@ def start_game(lvl, repeat):
             half_correct = 0
             index_i = 0
             attempts -=1
+
     print("SECRET NUMBER:", secret_number)   
     if attempts == 0:
         print("You dont have more attempts...")
