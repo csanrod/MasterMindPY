@@ -39,7 +39,8 @@ def number_of_repetitions(number, list_of_numbers):
 def start_game(lvl, repeat):
     print("Loading...")
 
-    secret_number_list = []
+    secret_number_list = [0,4,2]
+    secret_number = 42
     correct = 0
     half_correct = 0
 
@@ -65,22 +66,22 @@ def start_game(lvl, repeat):
     else:
         print("\tRepetition => No")
     
-    # -- Algorithm that generates the secret number -- #
-    number = random_number(limit)
-    secret_number_list.append(number)
-    n_digits -= 1
-    secret_number = number*(10**(n_digits))
-    while n_digits > 0:
-        if repeat:
-            number = random_number(limit)
-        else:
-            while number in secret_number_list:
-                number = random_number(limit)
-        secret_number_list.append(number)
-        n_digits -= 1
-        secret_number = secret_number + number*(10**(n_digits))
-    #print(secret_number_list[:])
-    #print(secret_number)
+    ## -- Algorithm that generates the secret number -- #
+    #number = random_number(limit)
+    #secret_number_list.append(number)
+    #n_digits -= 1
+    #secret_number = number*(10**(n_digits))
+    #while n_digits > 0:
+    #    if repeat:
+    #        number = random_number(limit)
+    #    else:
+    #        while number in secret_number_list:
+    #            number = random_number(limit)
+    #    secret_number_list.append(number)
+    #    n_digits -= 1
+    #    secret_number = secret_number + number*(10**(n_digits))
+    print(secret_number_list[:])
+    print(secret_number)
     print("Starting...")
 
     index_i = 0
@@ -96,8 +97,8 @@ def start_game(lvl, repeat):
                 if i not in used:
                     number_rep = number_rep + number_of_repetitions(int(i), secret_number_list)
                     used.append(i)
-                for j in str(secret_number):
-                    if i == j:
+                for j in secret_number_list:
+                    if i == str(j):
                         if index_i == index_j:
                             correct += 1
                             break
