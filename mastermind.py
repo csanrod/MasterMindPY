@@ -1,3 +1,5 @@
+from random import randint
+
 def set_lvl():
     print("WELCOME TO MASTERMIND GAME")
     print("Please set difficulty:",
@@ -28,15 +30,19 @@ def start_game(lvl, repeat):
     print("Loading...")
     if lvl == 1:
         print("\tDifficulty => BASIC")
+        n_digits = 3
         attempts = 6
     elif lvl == 2:
         print("\tDifficulty => NORMAL")
+        n_digits = 4
         attempts = 8
     else:
         print("\tDifficulty => HARD")
+        n_digits = 5
         attempts = 10
     
     print("\tAttempts =>", attempts)
+    print("\tN_digits =>", n_digits)
     
     if repeat:
         print("\tRepetition => Yes")
@@ -45,4 +51,9 @@ def start_game(lvl, repeat):
 
     print("Starting...")
 
-start_game(set_lvl(), repeat_digits())
+def random_number(limit):
+    return randint(0,limit)
+
+#start_game(set_lvl(), repeat_digits())
+
+print(random_number(12))
