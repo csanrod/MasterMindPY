@@ -29,6 +29,13 @@ def repeat_digits():
 def random_number(limit):
     return randint(0, limit)
 
+def number_of_repetitions(number, list_of_numbers):
+    count = 0
+    for i in list_of_numbers:
+        if number == i:
+            count += 1
+    return count
+
 def start_game(lvl, repeat):
     print("Loading...")
 
@@ -79,11 +86,28 @@ def start_game(lvl, repeat):
 
     index_i = 0
     index_j = 0
+    number_rep = 0
+    used = []
 
     while attempts > 0:
         number_attempt = input("Please introduce your number (attemtp "+ str(attempts)+"): ")
         if repeat:
-            pass
+            for i in number_attempt:
+                if int(i) in secret_number_list: 
+                    if i not in used:
+                        number_rep = number_rep + number_of_repetitions(int(i), secret_number_list)
+                        used.append(i)
+                    for j in str(secret_number):
+                        if i == j:
+                            if index_i == index_j:
+                                correct += 1
+                                break
+                        index_j += 1
+                    index_j = 0
+                index_i += 1
+            used[:] = []
+            half_correct = number_rep - correct
+            number_rep = 0       
         else:
             for i in number_attempt:
                 if int(i) in secret_number_list:
