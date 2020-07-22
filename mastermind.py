@@ -72,9 +72,32 @@ def start_game(lvl, repeat):
     print(secret_number_list[:])
     print(secret_number)
     print("Starting...")
-    
+
+    index = 0
+    while attempts > 0:
+        number_attempt = input("Please introduce your number (attemtp "+ str(attempts)+"): ")
+        for i in number_attempt:
+            if int(i) in secret_number_list:
+                if index == secret_number_list.index(int(i)):
+                    correct +=1
+                else:
+                    half_correct +=1
+            index += 1
+        print("Correct -->", correct)
+        print("Half correct -->", half_correct)
+        if correct != len(secret_number_list):
+            correct = 0
+            half_correct = 0
+            index = 0
+            attempts -=1
+        else:
+            attempts = -1
+    if attempts == 0:
+        print("... GAME OVER ...")
+    else:
+        print("... VICTORY! ...")
 
 def random_number(limit):
-    return randint(0,limit)
+    return randint(0, limit)
 
 start_game(set_lvl(), repeat_digits())
