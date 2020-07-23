@@ -12,9 +12,9 @@ with the attempt typed and will offer the following information on the screen:
 ## Rules
 1. You will need to set the difficulty:
 
-  - Basic (3 digits --> [0-4], 6 attempts)
-  - Normal (4 digits --> [0-5], 8 attempts)
-  - Hard (5 digits --> [0-9], 10 attempts)
+    - Basic (3 digits --> [0-4], 6 attempts)
+    - Normal (4 digits --> [0-5], 8 attempts)
+    - Hard (5 digits --> [0-9], 10 attempts)
   
 2. Then select if you want repeated digits on your secret number or not
 
