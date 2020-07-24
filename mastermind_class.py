@@ -32,7 +32,7 @@ class MmGame():
         self.__lvl = self.__set_lvl()
         self.__repetition = self.__repeat_digits()
         self.__config_parameters()
-        #self.__secret_number_generator()
+        self.__secret_number_generator()
 
     def __print_menu(self): 
         # Prints menu
@@ -130,9 +130,6 @@ class MmGame():
         #   4) Substract '2)' and '3)' to obtain half corrects
         
         print("Starting...")
-        self.__secret_number_list = [0,1,2]
-        self.__secret_number = 12
-        
         self.__correct = self.__half_correct = 0
         index_i = index_j = number_rep = 0
         used = []
