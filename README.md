@@ -19,3 +19,6 @@ with the attempt typed and will offer the following information on the screen:
 2. Then select if you want repeated digits on your secret number or not
 
 3. Finally, the game will start with the selected configuration. Enjoy!
+
+## How to play it
+You must have installed Python 3.8.5 or higher, then, you only need to open a shell and launch mastermind_class.py file.
