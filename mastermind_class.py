@@ -32,7 +32,7 @@ class MmGame():
         self.__lvl = self.__set_lvl()
         self.__repetition = self.__repeat_digits()
         self.__config_parameters()
-        self.__secret_number_generator()
+        #self.__secret_number_generator()
 
     def __print_menu(self): 
         # Prints menu
@@ -110,6 +110,15 @@ class MmGame():
             counter -= 1
             self.__secret_number = self.__secret_number + number*(10**(counter))
 
+    def __print_result(self):
+        # Prints the solution and the result of the game
+        print("SECRET NUMBER:", self.__secret_number)   
+        if self.__attempts == 0:
+            print("You dont have more attempts...")
+            print("... GAME OVER ...")
+        else:
+            print("... VICTORY! ...")
+
     def start_game(self):
 
         # Launch the game
@@ -121,46 +130,51 @@ class MmGame():
         #   4) Substract '2)' and '3)' to obtain half corrects
         
         print("Starting...")
+        self.__secret_number_list = [0,1,2]
+        self.__secret_number = 12
+        
         self.__correct = self.__half_correct = 0
         index_i = index_j = number_rep = 0
         used = []
+        
         while self.__attempts > 0:
             number_attempt = input("Please introduce your number (attemtp "+ str(self.__attempts)+"): ")
-            try:
-                for i in number_attempt:
-                    if int(i) in self.__secret_number_list: 
-                        if i not in used:
-                            number_rep = number_rep + number_of_repetitions(int(i), self.__secret_number_list)
-                            used.append(i)
-                        for j in self.__secret_number_list:
-                            if i == str(j):
-                                if index_i == index_j:
-                                    self.__correct += 1
-                                    break
-                            index_j += 1
-                        index_j = 0
-                    index_i += 1
-                used[:] = []
-                self.__half_correct = number_rep - self.__correct
-                number_rep = 0
-                print("\tCorrect -->", self.__correct)
-                print("\tHalf correct -->", self.__half_correct)
-                if int(number_attempt) == self.__secret_number:
-                    self.__attempts = -1
-                else:
-                    self.__correct = 0
-                    self.__half_correct = 0
-                    self.__attempts -=1
-                    index_i = 0
-            except ValueError:
-                print("Fail, number must be integer... please try it again!")
+            if len(number_attempt) == self.__number_of_digits:
+                try:
+                    for i in number_attempt:
+                        if int(i) in self.__secret_number_list: 
+                            if i not in used:
+                                number_rep = number_rep + number_of_repetitions(int(i), self.__secret_number_list)
+                                used.append(i)
+                            for j in self.__secret_number_list:
+                                if i == str(j):
+                                    if index_i == index_j:
+                                        self.__correct += 1
+                                        break
+                                index_j += 1
+                            index_j = 0
+                        index_i += 1
+                    self.__half_correct = number_rep - self.__correct
+                    
+                    print("\tCorrect -->", self.__correct)
+                    print("\tHalf correct -->", self.__half_correct)
 
-        print("SECRET NUMBER:", self.__secret_number)   
-        if self.__attempts == 0:
-            print("You dont have more attempts...")
-            print("... GAME OVER ...")
-        else:
-            print("... VICTORY! ...")
+                    if self.__correct == self.__number_of_digits:
+                        self.__attempts = -1
+                    else:
+                        self.__correct = 0
+                        self.__half_correct = 0
+                        self.__attempts -=1
+                        used[:] = []
+                        number_rep = 0
+                        index_i = 0
+                except ValueError:
+                    print("Fail, number must be integer... please try it again!")
+            else:
+                print("For this lvl, you must introduce", self.__number_of_digits, "digits exactly")
+        
+        self.__print_result()
+        
 
 # -- PROGRAM -- #
 myGame = MmGame()
